@@ -32,3 +32,6 @@ gem 'haml'
 
 # Deploy with Capistrano
 # gem 'capistrano'
+
+# https://devcenter.heroku.com/articles/ruby-support#injected-plugins
+gem 'rails_12factor'
