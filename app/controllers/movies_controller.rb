@@ -9,6 +9,8 @@ class MoviesController < ApplicationController
   def index
     order = params[:order]
     @movies = Movie.find(:all, :order => order)
+    @hilite = order
+
     flash[:notice] = params
   end
 
