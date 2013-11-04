@@ -10,17 +10,17 @@ class MoviesController < ApplicationController
     @all_ratings = Movie.get_all_ratings
     session[:ratings] ||= @all_ratings
     ratings = params[:ratings].nil? ? session[:ratings] : params[:ratings].keys
-    order = params[:order].nil? ? session[:order] : params[:order]
-    @movies = Movie.where('rating in (?)', ratings).order(order)
+    sort = params[:sort].nil? ? session[:sort] : params[:sort]
+    @movies = Movie.where('rating in (?)', ratings).order(sort)
 
-    @hilite = order
+    @hilite = sort
 
     session[:ratings] = ratings
-    session[:order] = order
+    session[:sort] = sort
     flash[:notice] = {
       :params => params,
       :session_ratings => session[:ratings],
-      :session_order => session[:order],
+      :session_sort => session[:sort],
     }
   end
 
