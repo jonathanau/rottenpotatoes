@@ -7,11 +7,16 @@ class MoviesController < ApplicationController
   end
 
   def index
+    @all_ratings = Movie.get_all_ratings
+    ratings = params[:ratings].nil? ? @all_ratings : params[:ratings].keys
     order = params[:order]
-    @movies = Movie.find(:all, :order => order)
+    @movies = Movie.where('rating in (?)', ratings).order(order)
+
     @hilite = order
 
-    flash[:notice] = params
+    flash[:session] ||= {}
+    flash[:session].merge!({ :ratings => ratings })
+    flash[:notice] = { :params => params, :session => flash[:session] }
   end
 
   def new
