@@ -14,14 +14,14 @@
     %tr
       -# TODO: Is there a cleaner way to set the CSS class on %th without
       -#       duplicating the %a child?
-      - if @hilite == :title.to_s
+      - if @sort == :title.to_s
         %th.hilite
           %a#title_header{:href => movies_path(:sort => :title)} Movie Title
       - else
         %th
           %a#title_header{:href => movies_path(:sort => :title)} Movie Title
       %th Rating
-      - if @hilite == :release_date.to_s
+      - if @sort == :release_date.to_s
         %th.hilite
           %a#release_date_header{:href => movies_path(:sort => :release_date)} Release Date
       - else
