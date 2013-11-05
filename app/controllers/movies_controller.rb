@@ -15,6 +15,7 @@ class MoviesController < ApplicationController
     if session[:sort] && @sort.nil?
       params[:sort] = session[:sort]
       redirect_to movies_path(params)
+      return
     end
 
     @movies = Movie.where('rating in (?)', ratings).order(@sort)
